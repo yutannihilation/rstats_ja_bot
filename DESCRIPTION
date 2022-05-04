@@ -1,0 +1,9 @@
+Package: rstatsjabot
+Version: 0.0.0
+Config/Needs/retweet:
+    httr2,
+    jsonlite,
+    here,
+    purrr,
+    rlang,
+    httpuv
