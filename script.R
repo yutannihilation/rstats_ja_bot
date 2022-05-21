@@ -51,11 +51,13 @@ secret_write_rds(refresh_token, here::here("secrets", "refresh_token.rds"), RSTA
 
 # Get #rstatsj tweets -----------------------------------------------------
 
-# d.f. https://developer.twitter.com/en/docs/twitter-api/tweets/search/api-reference/get-tweets-search-recent
+# c.f. https://developer.twitter.com/en/docs/twitter-api/tweets/search/api-reference/get-tweets-search-recent
+# exclude some bots:
+# - @rstatsvideo
 get_rstatsj_tweets <- function() {
   req <- request("https://api.twitter.com/2/tweets/search/recent") |>
     req_auth_bearer_token(access_token) |>
-    req_url_query(query = "(#rstatsj OR (#rstats lang:ja)) -is:retweet")
+    req_url_query(query = "(#rstatsj OR (#rstats lang:ja)) -is:retweet -from:rstatsvideo")
 
   resp <- req |>
     req_perform() |>
