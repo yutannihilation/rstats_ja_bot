@@ -38,9 +38,8 @@ jobs:
           git add secrets/
           git update-index --refresh
           if ! git diff-index --quiet HEAD -- secrets/; then
-            # Overwrite the existing commit
-            git commit --amend -m "Update secrets [skip ci]"
-            git push origin --force-with-lease main
+            git commit -m "Update secrets [skip ci]"
+            git push origin main
           else
             echo "No changes"
           fi
